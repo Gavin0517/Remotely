@@ -11,29 +11,29 @@ namespace Remotely.Shared.Models
     public class Device
     {
         [Sortable]
-        [Display(Name = "Agent Version")]
+        [Display(Name = "代理版本")]
         public string AgentVersion { get; set; }
 
         public ICollection<Alert> Alerts { get; set; }
         [StringLength(100)]
 
         [Sortable]
-        [Display(Name = "Alias")]
+        [Display(Name = "别名")]
         public string Alias { get; set; }
 
         [Sortable]
-        [Display(Name = "CPU Utilization")]
+        [Display(Name = "CPU利用率")]
         public double CpuUtilization { get; set; }
 
         [Sortable]
-        [Display(Name = "Current User")]
+        [Display(Name = "当前用户")]
         public string CurrentUser { get; set; }
 
         public DeviceGroup DeviceGroup { get; set; }
         public string DeviceGroupID { get; set; }
 
         [Sortable]
-        [Display(Name = "Device Name")]
+        [Display(Name = "设备名称")]
         public string DeviceName { get; set; }
         public List<Drive> Drives { get; set; }
 
@@ -44,7 +44,7 @@ namespace Remotely.Shared.Models
         public bool IsOnline { get; set; }
 
         [Sortable]
-        [Display(Name = "Last Online")]
+        [Display(Name = "最后在线时间")]
         public DateTimeOffset LastOnline { get; set; }
 
         [StringLength(5000)]
@@ -57,15 +57,15 @@ namespace Remotely.Shared.Models
         public Architecture OSArchitecture { get; set; }
 
         [Sortable]
-        [Display(Name = "OS Description")]
+        [Display(Name = "操作系统描述")]
         public string OSDescription { get; set; }
 
         [Sortable]
-        [Display(Name = "Platform")]
+        [Display(Name = "平台")]
         public string Platform { get; set; }
 
         [Sortable]
-        [Display(Name = "Processor Count")]
+        [Display(Name = "处理器数量")]
         public int ProcessorCount { get; set; }
 
         public string PublicIP { get; set; }
@@ -84,31 +84,31 @@ namespace Remotely.Shared.Models
 
         [StringLength(200)]
         [Sortable]
-        [Display(Name = "Tags")]
+        [Display(Name = "标签")]
         public string Tags { get; set; } = "";
 
         [Sortable]
-        [Display(Name = "Memory Total")]
+        [Display(Name = "总内存")]
         public double TotalMemory { get; set; }
 
         [Sortable]
-        [Display(Name = "Storage Total")]
+        [Display(Name = "总存储")]
         public double TotalStorage { get; set; }
 
         [Sortable]
-        [Display(Name = "Memory Used")]
+        [Display(Name = "已使用内存")]
         public double UsedMemory { get; set; }
 
         [Sortable]
-        [Display(Name = "Memory Used %")]
+        [Display(Name = "内存使用百分比")]
         public double UsedMemoryPercent => UsedMemory / TotalMemory;
 
         [Sortable]
-        [Display(Name = "Storage Used")]
+        [Display(Name = "已使用存储")]
         public double UsedStorage { get; set; }
 
         [Sortable]
-        [Display(Name = "Storage Used %")]
+        [Display(Name = "存储使用百分比")]
         public double UsedStoragePercent => UsedStorage / TotalStorage;
 
         public WebRtcSetting WebRtcSetting { get; set; }

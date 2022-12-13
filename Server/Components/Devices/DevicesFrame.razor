@@ -1,16 +1,16 @@
 ﻿@attribute [Authorize]
 @inherits AuthComponentBase
 
-<h3>Devices</h3>
+<h3>设备列表</h3>
 
 <div @onclick="ClearSelectedCard">
     <div id="deviceControlsWrapper">
         <div>
             <div>
-                <div>Device Group</div>
+                <div>设备分组</div>
                 <select class="form-control" style="width: 200px" @bind="_selectedGroupId">
-                    <option value="@_deviceGroupAll">All</option>
-                    <option value="@_deviceGroupNone">None</option>
+                    <option value="@_deviceGroupAll">全部</option>
+                    <option value="@_deviceGroupNone">无</option>
                     @foreach (var group in _deviceGroups)
                     {
                         <option @key="group.ID" value="@group.ID">@group.Name</option>
@@ -19,7 +19,7 @@
             </div>
 
             <div>
-                <div class="mt-1">Sort</div>
+                <div class="mt-1">排序</div>
                 <select class="form-control d-inline" style="width: 150px" @bind="_selectedSortProperty">
                     <option value=""></option>
                     @foreach (var prop in _sortableProperties)
@@ -34,21 +34,21 @@
 
             <div class="custom-control custom-checkbox mt-2">
                 <input id="hideOfflineDevicesCheckbox" type="checkbox" class="custom-control-input" @bind="_hideOfflineDevices" />
-                <label class="custom-control-label" for="hideOfflineDevicesCheckbox">Hide offline devices</label>
+                <label class="custom-control-label" for="hideOfflineDevicesCheckbox">隐藏离线设备</label>
             </div>
             <div class="mt-2">
-                <button class="btn btn-sm btn-secondary mr-2" @onclick="SelectAllCards">Select All</button>
-                <button class="btn btn-sm btn-primary" @onclick="HandleRefreshClicked">Refresh</button>
+                <button class="btn btn-sm btn-secondary mr-2" @onclick="SelectAllCards">选择全部</button>
+                <button class="btn btn-sm btn-primary" @onclick="HandleRefreshClicked">刷新</button>
             </div>
         </div>
          
         <div>
             <div class="d-inline-block text-left">
                 <div>
-                    <div>Search</div>
+                    <div>搜索</div>
                     <input class="form-control d-inline"
                            style="width: 200px"
-                           placeholder="Search device properties"
+                           placeholder="输入设备属性"
                            @bind="_filter" />
                 </div>
 
@@ -72,7 +72,7 @@
                         <option value="100">100</option>
                         <option value="200">200</option>
                     </select>
-                    <span class="ml-1 small">per page</span>
+                    <span class="ml-1 small">每页条数</span>
                 </div>
             </div>
            

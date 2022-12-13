@@ -247,22 +247,42 @@ namespace Remotely.Desktop.Win.Services
                     return Result.Fail<SKBitmap>("No frames were accumulated.");
                 }
 
+                //using Texture2D screenTexture2D = screenResource.QueryInterface<Texture2D>();
+                //device.ImmediateContext.CopyResource(screenTexture2D, texture2D);
+                //var dataBox = device.ImmediateContext.MapSubresource(texture2D, 0, MapMode.Read, SharpDX.Direct3D11.MapFlags.None);
+                //using var bitmap = new Bitmap(bounds.Width, bounds.Height, PixelFormat.Format32bppArgb);
+                //var bitmapData = bitmap.LockBits(bounds, ImageLockMode.WriteOnly, bitmap.PixelFormat);
+                //var dataBoxPointer = dataBox.DataPointer;
+                //var bitmapDataPointer = bitmapData.Scan0;
+                //for (var y = 0; y < bounds.Height; y++)
+                //{
+                //    Utilities.CopyMemory(bitmapDataPointer, dataBoxPointer, bounds.Width * 4);
+                //    dataBoxPointer = IntPtr.Add(dataBoxPointer, dataBox.RowPitch);
+                //    bitmapDataPointer = IntPtr.Add(bitmapDataPointer, bitmapData.Stride);
+                //}
+                //bitmap.UnlockBits(bitmapData);
+                //device.ImmediateContext.UnmapSubresource(texture2D, 0);
+                //screenResource?.Dispose();
                 using Texture2D screenTexture2D = screenResource.QueryInterface<Texture2D>();
                 device.ImmediateContext.CopyResource(screenTexture2D, texture2D);
                 var dataBox = device.ImmediateContext.MapSubresource(texture2D, 0, MapMode.Read, SharpDX.Direct3D11.MapFlags.None);
-                using var bitmap = new Bitmap(bounds.Width, bounds.Height, PixelFormat.Format32bppArgb);
-                var bitmapData = bitmap.LockBits(bounds, ImageLockMode.WriteOnly, bitmap.PixelFormat);
-                var dataBoxPointer = dataBox.DataPointer;
-                var bitmapDataPointer = bitmapData.Scan0;
-                for (var y = 0; y < bounds.Height; y++)
-                {
-                    Utilities.CopyMemory(bitmapDataPointer, dataBoxPointer, bounds.Width * 4);
-                    dataBoxPointer = IntPtr.Add(dataBoxPointer, dataBox.RowPitch);
-                    bitmapDataPointer = IntPtr.Add(bitmapDataPointer, bitmapData.Stride);
-                }
-                bitmap.UnlockBits(bitmapData);
+                //using var bitmap = new Bitmap(bounds.Width, bounds.Height, PixelFormat.Format32bppArgb);
+                //var bitmapData = bitmap.LockBits(bounds, ImageLockMode.WriteOnly, bitmap.PixelFormat);
+                //var dataBoxPointer = dataBox.DataPointer;
+                //var bitmapDataPointer = bitmapData.Scan0;
+                //for (var y = 0; y < bounds.Height; y++)
+                //{
+                //    Utilities.CopyMemory(bitmapDataPointer, dataBoxPointer, bounds.Width * 4);
+                //    dataBoxPointer = IntPtr.Add(dataBoxPointer, dataBox.RowPitch);
+                //    bitmapDataPointer = IntPtr.Add(bitmapDataPointer, bitmapData.Stride);
+                //}
+                //bitmap.UnlockBits(bitmapData);
+
+                using var bitmap = new Bitmap(texture2D.Description.Width, texture2D.Description.Height, dataBox.RowPitch,
+                        System.Drawing.Imaging.PixelFormat.Format32bppArgb, dataBox.DataPointer);
                 device.ImmediateContext.UnmapSubresource(texture2D, 0);
                 screenResource?.Dispose();
+
 
                 switch (dxOutput.Rotation)
                 {
